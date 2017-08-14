@@ -1,0 +1,42 @@
+.panel_table{
+  z-index:10;
+  position:relative;
+  left:150px;
+  top:150px;
+  width: 1250px;
+  border:2px solid black;
+}
+.inlineTable {
+  display: inline-block;
+}
+
+.two {
+    background-color: gray;
+}
+.editbox
+{
+  width:100%;
+  display:none
+}
+.editbox
+{
+  text-align: center;
+  font-size:12px;
+  width:100%;
+  background-color:#A9CCE3;
+}
+.edit_tr:hover
+{
+  cursor:pointer;
+}
+
+#mydata td{
+    border: 1px solid black;
+
+}
+#mydata th{
+    border: 1px solid black;
+}
+#mydata tr{
+    border: 1px solid black;
+}
