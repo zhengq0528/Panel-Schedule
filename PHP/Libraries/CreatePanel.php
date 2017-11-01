@@ -1,13 +1,15 @@
 <?php
 
 //Draw a editing panel
-function draw_edit_panel($_PanelName,$mid,$cid,&$c)
+function draw_edit_panel($_PanelName,$mid,$cid,$c)
 {
 
   $editpanel = new popwin("Updating $_PanelName",1,$mid,$cid);
   $editpanel->draw_head();
   $editpanel->draw_table_s();
-  edit_Services($c->get_intype(),$c->get_service());
+  $svs = $c->get_service();
+  //echo "<script>alert('$svs');</script>";
+  edit_Services($c->get_intype(),$svs);
   echo "<input type='hidden' name ='panel' value ='$_PanelName'>";
   //Panel Location Field
   $c_data = array("text","location",$c->get_location(),"","style='text-transform:uppercase' maxlength='25'");
@@ -38,11 +40,11 @@ function draw_edit_panel($_PanelName,$mid,$cid,&$c)
   $editpanel->draw_selection("<center><b>Ground Bus:</center>",'groundbus',$arr_builder);
 
   //Short Circuit Rating field
-  $c_data = array("text","rating",$c->get_rating(),"","onkeypress='return event.charCode >= 0 && event.charCode <= 64'");
+  $c_data = array("text","rating",$c->get_rating(),"","");
   $editpanel->draw_content("<b>Short Circuit Rating:",$c_data);
 
   //Note Field
-  $c_data = array("long-text","note",$c->get_note(),"","style='text-transform:uppercase' maxlength='255'");
+  $c_data = array("long-text","note",$c->get_note(),"","style='text-transform:uppercase; width:1100px;' maxlength='255'");
   $editpanel->draw_content("<b>Note:",$c_data);
 
   if($c->get_intype() ==3)
@@ -128,11 +130,11 @@ function draw_create_panel($_PanelType,$_PanelName,$mid,$cid,$s_name,$s_value)
   $createpanel->draw_selection("<center><b>Ground Bus:</center>",'groundbus',$arr_builder);
 
   //Short Circuit Rating field
-  $c_data = array("text","rating","","","onkeypress='return event.charCode >= 0 && event.charCode <= 64'");
+  $c_data = array("text","rating","","","");
   $createpanel->draw_content("<b>Short Circuit Rating:",$c_data);
 
   //Note Field
-  $c_data = array("long-text","note","","","style='text-transform:uppercase' maxlength='255'");
+  $c_data = array("long-text","note","","","style='text-transform:uppercase;width:1100px;' maxlength='255' ");
   $createpanel->draw_content("<b>Note:",$c_data);
 
   Additional_Field($_PanelType);
@@ -144,7 +146,7 @@ function draw_create_panel($_PanelType,$_PanelName,$mid,$cid,$s_name,$s_value)
 
 function Create_Circuits($_PanelType)
 {
-  echo "<tr> <td> <center><b>Circuit Number: </center></td> <td><center>";
+  echo "<tr> <td> <center><b>Number of Circuits: </center></td> <td><center>";
   if($_PanelType==1)
   {
     echo "<select id = 1 name='circuit' style='width:175px;height:30px;'>";
@@ -260,6 +262,10 @@ function ulta_panel($_PanelType)
     {
       echo "<tr><td><center><b> Service: <center></td> <td>";
       echo "<center><select id = 1 name='service' style = 'width:175px;height:30px;'>";
+      if(!empty($fs))
+      {
+        echo "<option value='$fs'>$fs</option>";
+      }
       echo "<option value='120/208V.,3PH.,4W.'>120/208V.,3PH.,4W.</option>";
       echo "<option value='120/208V.,3PH.,4W.'>120/208V.,3PH.,5W.</option>";
       echo "<option value='120/208V.,3PH.,4W.'>120/240V.,3PH.,4W.</option>";
@@ -289,6 +295,10 @@ function ulta_panel($_PanelType)
     {
       echo "<tr><td><center><b> Service: <center></td> <td>";
       echo "<center><select id = 1 name='service' style = 'width:175px;height:30px;'>";
+      if(!empty($fs))
+      {
+        echo "<option value='$fs'>$fs</option>";
+      }
       echo "<option value='120/208V.,1PH.,3W.'>120/208V.,1PH.,3W.</option>";
       echo "<option value='120/240V.,1PH.,3W.'>120/240V.,1PH.,3W.</option>";
       echo "</select></center></td></tr>";
@@ -297,6 +307,10 @@ function ulta_panel($_PanelType)
     {
       echo "<tr><td><center><b> Service: <center></td> <td><center>";
       echo "<select id = 1 name='service' style = 'width:175px;height:30px;'>";
+      if(!empty($fs))
+      {
+        echo "<option value='$fs'>$fs</option>";
+      }
       echo "<option value='120/120V.,1PH.,3W.'>120/120V.,1PH.,3W.</option>";
       echo "<option value='120/208V.,1PH.,3W.'>120/208V.,1PH.,3W.</option>";
       echo "<option value='120/240V.,1PH.,3W.'>120/240V.,1PH.,3W.</option>";
@@ -403,7 +417,7 @@ function ulta_panel($_PanelType)
     else if($_PanelType==5)
     {
       echo "<tr><td><center><b> Service: <center></td> <td><center>";
-      echo "<center><select id='slc3' name = 'circuit' style='width:175px;height:30px;'>";
+      echo "<center><select id='slc3' name = 'service' style='width:175px;height:30px;'>";
       echo "<option data-group='SHOW' value='0'>-- Select --</option>";
       echo "</center></select></td></tr>";
     }

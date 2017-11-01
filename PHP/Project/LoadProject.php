@@ -62,7 +62,7 @@ if(empty($row))
   </div>
 
   <button id="edit_project" class = "header_button" type="button"
-  style="position:fixed;left:1165px;top:5px;">Edit Project</button>
+  style="position:fixed;left:1105px;top:5px;width:200px;">Edit Project Information</button>
   <button id="edit_project" class = "header_button" type="button" onclick="location.href='../../'"
   style="position:fixed;left:1315px;top:5px;">Close Project</button>
 
@@ -88,12 +88,13 @@ if(empty($row))
       <input type='submit' value = 'Transformer' class ="button" name="tf">
     </form>
     <button id = "cir" class = "button" type="button">Edit Circuit</button>
+    <button id = "pt" class = "button" type="button" onclick="prints()">Print</button>
     <FORM class = "button" >
       <button class = "button" type="button" id='loadp'>Calculate</button>
     </FORM>
 
   </div>
-  <div class="box3" style="left:1145px;">
+  <div class="box3" style="left:1245px;">
     <p style = 'font-size:25px; color:white;'>&emsp;&emsp;&emsp; Connections</p>
     <button id="link"class = "button"type="button">Panel</button>
     <button id="trans"class = "button"type="button">Transformer</button>

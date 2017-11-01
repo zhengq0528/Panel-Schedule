@@ -12,6 +12,7 @@ if($_POST['id'])
     echo "{$key} = {$value}<br>";
   }
   $key = addslashes($key);
+  $key = strtoupper($key);
   $sql = "UPDATE ps.keys SET $type = '$key' WHERE id = '$id' ";
   if(mysqli_query($conn,$sql)){
     echo " <br>Records were updated successfully.";

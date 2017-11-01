@@ -4,7 +4,11 @@ $editproject->draw_head();
 $editproject->draw_table_s();
 echo "<input type='hidden'  name ='jn' value = '$_GET[jn]'>";
 $c_title = "Job Description";
-$c_data = array("long-text","jd","$row[jobdesc]","jd");
+//$row['jobdesc'] =addslashes($row['jobdesc']);
+//echo "<script>alert('$row[jobdesc]');</script>";
+//$row['jobdesc'] =addslashes($row['jobdesc']);
+//echo "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>";
+$c_data = array("long-text","jd",str_replace("'","&#39;",$row['jobdesc']),"jd");
 $editproject->draw_content($c_title,$c_data);
 $arr_buildingtype = array(
   $row['type'] => getProjectType($row['type']),

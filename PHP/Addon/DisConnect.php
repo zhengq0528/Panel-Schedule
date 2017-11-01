@@ -9,7 +9,7 @@ WHERE jn = '$_GET[jn]' AND panel = '".$panelName."'";
 $result = $conn->query($sql);
 $codes = array('P','p','T','t','1','4');
 
-echo "<input type='hidden' value= $panelName name = 'panel'>";
+echo "<input type='hidden' value= '$panelName' name = 'panel'>";
 echo "<input type='hidden' value= '2' name = 'dispan'>";
 $type = $cur_panel->type;
 echo "<input type= hidden name = 'tp' value = '$type'>";

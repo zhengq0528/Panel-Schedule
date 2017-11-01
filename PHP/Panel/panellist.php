@@ -31,7 +31,7 @@ border: 1px solid #283747; '>
     }
 
   }
-  else echo "<p style='font-size: 16px;color:white;'>No Panels</p>";
+  else echo "<p style='font-size: 16px;'>No Panels</p>";
 
   ?>
 </center>

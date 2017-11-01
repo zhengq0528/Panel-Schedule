@@ -55,6 +55,7 @@ if(isset($_POST['dispan']))
 {
   $abc = new panel($_POST['pd'],$_POST['lpd']);
   $dty = $abc->get_intype();
+  //echo "<script>alert('$_POST[panel]');</script>";
   $sql = "SELECT * from ps.circuit
   WHERE jn='$_GET[jn]' and panel = '$_POST[panel]' and circuit = '$_POST[ShowTable]'";
   $result = $conn->query($sql);

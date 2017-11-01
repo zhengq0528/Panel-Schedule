@@ -41,8 +41,6 @@ if(isset($_POST['updatepanel']))
   {
     echo "<script>You Failed To Update Panel.</script>";
   }
-  //echo "<h1><br>$sql </h1>";
-
 }
 //If User Clicked creat panel button. This will be called
 if(isset($_POST['apn']))

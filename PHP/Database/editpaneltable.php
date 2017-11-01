@@ -13,9 +13,16 @@ if($_POST['id'])
   }
   echo "type = $type ; key = $key <br>";
   $key = addslashes($key);
-  if(empty($key))
-    $key = 0;
-  $sql = "UPDATE ps.circuit SET $type = '$key' WHERE id = '$id' ";
+  $key = strtoupper($key);
+  if(is_null($key))
+  {
+    $key = 'NULL';
+    $sql = "UPDATE ps.circuit SET $type = NULL WHERE id = '$id' ";
+  }
+  else
+  {
+    $sql = "UPDATE ps.circuit SET $type = '$key' WHERE id = '$id' ";
+  }
   echo "$id is here <br>";
   if(mysqli_query($conn,$sql)){
     echo " <br>Records were updated successfully.";

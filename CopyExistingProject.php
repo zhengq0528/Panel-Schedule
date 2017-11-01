@@ -126,11 +126,21 @@ if(isset($_POST['copy']))
                     }
                     //$sqlcc = addslashes($sqlcc);
                         $conn->query($sqlcc);
+
                     }
                     }
                     else{
                       echo "<h1 style'color:red'>Creation Failed<br> Job Number $jn Already Exist </h1>";
                     }
+
+                    echo "<input type='hidden' value = '$_POST[njn]' id ='cjn'>";
+                   ?>
+                   <script type="text/javascript">
+                   document.getElementById('LUIPanel').value = document.getElementById('cjn').value;
+                   document.getElementById('enter').submit();
+                   //document.getElementById("error").innerHTML = document.getElementById("message").value;
+                   </script>
+                   <?php
                   }
                 }
                 ?>

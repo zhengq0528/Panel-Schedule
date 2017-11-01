@@ -14,7 +14,7 @@ include('PHP/Database/db.php');
 <body>
   <H2><CENTER> PANEL SCHEDULE SYSTEM</H2>
     <p><CENTER> Please Enter Job Number</P>
-      <form method='get' action = "PHP/Panel/Interface.php">
+      <form method='get' id = "enter" action = "PHP/Panel/Interface.php">
         <Input list="productName" style="text-transform:uppercase" type="text" id = "LUIPanel" name = "jn" >
           <datalist id="productName">
             <?php
@@ -43,24 +43,16 @@ include('PHP/Database/db.php');
           <input type='submit' value = '2015' name ='year'>
           <input type='submit' value = '2016' name ='year'>
           <input type='submit' value = '2017' name ='year'>
+          <input type='submit' value = 'Recent' name ='year'>
         </form>
         <h4 id='error'>
           <h4>
-            <?php
-            if(empty($_POST['year']))
-            {
-              echo "<h3> 10 Latest Edited Project </h3>";
-            }
-            else
-            {
-                echo "<h3> All Projects In Year Of $_POST[year] </h3>";
-            }
-            ?>
             <table style="width:500px;"border="1px solid black">
 
               <?php
-              if(empty($_POST['year']))
+              if(strcmp($_POST['year'],'Recent')==0 || empty($_POST['year']))
               {
+                echo "<h3> 10 Latest Edited Project </h3>";
                 $sql = "SELECT * FROM ps.project ORDER BY date DESC LIMIT 10";
                 $result = $conn->query($sql);
                 while($row = $result->fetch_assoc())
@@ -74,6 +66,7 @@ include('PHP/Database/db.php');
               }
               else
               {
+                echo "<h3> All Projects In Year Of $_POST[year] </h3>";
                 $str = $_POST['year'][2].$_POST['year'][3];
                 $sql = "SELECT * FROM ps.project WHERE jn like '$str%'";
                 $result = $conn->query($sql);

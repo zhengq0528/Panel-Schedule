@@ -27,7 +27,7 @@ if(isset($_POST['sb']))
     $conn->query($sql);
     $sql = "DELETE FROM ps.transformer WHERE jn = '$jn'";
     $conn->query($sql);
-    echo "<h1 style='color:red;'> You Successfully Delete Projet :$jn <h1>";
+    echo "<h1 style='color:green;'> You have successfully deleted project :$jn <h1>";
   }
   else {
     echo "<h1> Please Enter 'CONFIRM' to confirm deletion</h1>";

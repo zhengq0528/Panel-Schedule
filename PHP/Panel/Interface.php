@@ -14,7 +14,7 @@
   <link href="../../css/dataTables.bootstrap.min.css" rel="stylesheet">
   <!-- Customer Libraries -->
   <link href="../../css/Customer/popupstyle.css?v=4" rel="stylesheet">
-  <link href="../../css/Customer/button.css?v=1" rel="stylesheet">
+  <link href="../../css/Customer/button.css?v=2" rel="stylesheet">
   <link href="../../css/Customer/TableStyle.css?v=4" rel="stylesheet">
 
 </head>
@@ -30,9 +30,10 @@ include("../Libraries/CreatePanel.php");
 include("../Addon/HandleLink.php");
 
 include("../Project/LoadProject.php");
+include("../Project/EditProject.php");
 include("../Tools/CreatePanel.php");
 include("../Tools/DeletePanel.php");
-include("../Project/EditProject.php");
+
 
 include("panellist.php");
 

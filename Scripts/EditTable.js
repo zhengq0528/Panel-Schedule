@@ -31,11 +31,11 @@ if(document.getElementById("idmax"))
 var ma = document.getElementById("idmax").value;
 mi = parseInt(mi);
 ma = parseInt(ma);
-for(var i = mi; i < ma ; i++)
-{
+//for(var i = mi; i < ma ; i++)
+//{
   //alert(i);
-  voltChecking(i);
-}
+  //voltChecking(i);
+//}
 
 function dis(ID)
 {
@@ -270,54 +270,70 @@ var active = 4;
 var a = 0;
 $(document).ready(function()
 {
-  $('#mydata tbody').on( 'click' , 'td', function (event) {
+
+  $('#mydata tbody').on( 'focus' , 'td', function (event) {
     active = $(this).closest('table').find('td').index(this);
   });
   $('input').keydown(function(event) {
+
+    /*
     var columns =  $('#mydata tfoot th').length + 3;
     var rows = $('#mydata td').length;
     var c = $('#mydata tfoot th').length;
     if (event.keyCode == 37) { //move left
+      $(this).trigger('select');
       a = active - 1;
       if(a >= 0)
       {
         active = active - 1;
         $('.two').removeClass('two');
-        $('#mydata tr td').eq(active).addClass('two').trigger( "click" );
+        $('#mydata tr td').eq(active).addClass('two').trigger( "focus" );
+        //$(this).select();
+        //$(this).trigger('select');
 
       }
     }
     if (event.keyCode == 39) { //move right
+      $(this).trigger('select');
       a = active + 1;
       if(a < rows)
       {
         active = active + 1;
         $('.two').removeClass('two');
-        $('#mydata tr td').eq(active).addClass('two').trigger( "click" );
+        $('#mydata tr td').eq(active).addClass('two').trigger( "focus" );
+        //$(this).select();
+        //$(this).trigger('select');
       }
     }
     if (event.keyCode == 38) { //move up
+      $(this).trigger('select');
       a = active - c;
       if(a >= 0)
       {
         active = active - c;
         $('.two').removeClass('two');
-        $('#mydata tr td').eq(active).addClass('two').trigger( "click" );
+        $('#mydata tr td').eq(active).addClass('two').trigger( "focus" );
+        //$(this).select();
+        //$(this).trigger('select');
       }
     }
     if (event.keyCode == 40) { //move down
+      $(this).trigger('select');
       a = active + c;
       if(a < rows)
       {
         active = active + c;
         $('.two').removeClass('two');
-        $('#mydata tr td').eq(active).addClass('two').trigger( "click" );
+        $('#mydata tr td').eq(active).addClass('two').trigger( "focus" );
+        //$(this).select();
+      //$(this).trigger('select');
       }
     }
+    */
 
     if (event.keyCode == 13) {
       $(".editbox").hide();
-      $(".text").show();
+      $(".text").show().trigger( "focus" );
       $('.two').removeClass('two');
       var ID=$(this).attr('id');
       var uses=$("#"+ID).val();
@@ -335,16 +351,19 @@ $(document).ready(function()
         }
       });
     }
+    //$(this).select();
+    //$(this).find('option:selected').text();
   });
 
   // Edit input box click action
   $(".editbox").mouseup(function()
   {
     $('.active').removeClass('active');
+    $('.two').removeClass('two');
     return false;
   });
 
-  $(".uses").click(function()
+  $(".uses").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
@@ -352,10 +371,17 @@ $(document).ready(function()
     var ID=$(this).attr('id');
     $("#uses_"+ID).hide();
     $("#uses_input_"+ID).show();
-    $("#uses_input_"+ID).focus();
+    $("#uses_input_"+ID).focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#uses_input_"+ID).select();
+    //});
+    //alert(ID);
+
+    //$(this);
   }).change(function()
   {
     var ID=$(this).attr('id');
+    $(this).select();
     var uses=$("#uses_input_"+ID).val();
     var dataString = 'id='+ ID +'&uses='+uses;
     $.ajax({
@@ -370,13 +396,16 @@ $(document).ready(function()
     });
   });
 
-  $(".watts1").click(function()
+  $(".watts1").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#watts1_"+ID).hide();
-    $("#watts1_input_"+ID).show().focus();
+    $("#watts1_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#watts1_input_"+ID).select();
+    //});
     var wdate = document.getElementById("watts1_input_"+ID).value;
     if(wdate == 0) document.getElementById("watts1_input_"+ID).value = null;
   }).change(function()
@@ -419,13 +448,16 @@ $(document).ready(function()
     });
   });
 
-  $(".watts2").click(function()
+  $(".watts2").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#watts2_"+ID).hide();
-    $("#watts2_input_"+ID).show().focus();
+    $("#watts2_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#watts2_input_"+ID).select();
+    //});
     var wdate = document.getElementById("watts2_input_"+ID).value;
     if(wdate == 0) document.getElementById("watts2_input_"+ID).value = null;
   }).change(function()
@@ -466,13 +498,16 @@ $(document).ready(function()
       }
     });
   });
-  $(".watts3").click(function()
+  $(".watts3").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#watts3_"+ID).hide();
-    $("#watts3_input_"+ID).show().focus();
+    $("#watts3_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#watts3_input_"+ID).select();
+    //});
     var wdate = document.getElementById("watts3_input_"+ID).value;
     if(wdate == 0) document.getElementById("watts3_input_"+ID).value = null;
   }).change(function()
@@ -515,13 +550,16 @@ $(document).ready(function()
     });
   });
 
-  $(".code").click(function()
+  $(".code").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#code_"+ID).hide();
-    $("#code_input_"+ID).show().focus();
+    $("#code_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#code_input_"+ID).select();
+    //});
   }).change(function()
   {
     var codes = ["p","P","t","T"];
@@ -549,13 +587,16 @@ $(document).ready(function()
   });
 
 
-  $(".bftype").click(function()
+  $(".bftype").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#bftype_"+ID).hide();
-    $("#bftype_input_"+ID).show().focus();
+    $("#bftype_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#bftype_input_"+ID).select();
+    //});
   }).change(function()
   {
     var ID=$(this).attr('id');
@@ -575,13 +616,16 @@ $(document).ready(function()
     });
   });
 
-  $(".breaker").click(function()
+  $(".breaker").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#breaker_"+ID).hide();
-    $("#breaker_input_"+ID).show().focus();
+    $("#breaker_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#breaker_input_"+ID).select();
+    //});
   }).change(function()
   {
     var ID=$(this).attr('id');
@@ -600,13 +644,16 @@ $(document).ready(function()
     });
   });
 
-  $(".fuse").click(function()
+  $(".fuse").focus(function()
   {
     $(".editbox").hide();
     $(".text").show();
     var ID=$(this).attr('id');
     $("#fuse_"+ID).hide();
-    $("#fuse_input_"+ID).show().focus();
+    $("#fuse_input_"+ID).show().focus().select();
+    //$(this).keyup(function(event) {
+    //  $("#fuse_input_"+ID).select();
+    //});
   }).change(function()
   {
     var ID=$(this).attr('id');
@@ -629,6 +676,7 @@ $(document).ready(function()
   $(document).mouseup(function()
   {
     $('.active').removeClass('active');
+    $('.two').removeClass('two');
     $(".editbox").hide();
     $(".text").show();
   });

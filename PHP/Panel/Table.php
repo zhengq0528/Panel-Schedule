@@ -101,7 +101,7 @@ if(isset($_POST['ShowTable'])){
   include("..//Database/EditCircuitSize.php");
   if($is_block != 1)
   {
-    echo "<script src='../../Scripts/EditTable.js?v=2'></script>";
+    echo "<script src='../../Scripts/EditTable.js?v=5'></script>";
   }
 }
 
@@ -143,4 +143,23 @@ $('#cir').click(function(){
   }
 });
 
+function prints()
+{
+  var printContents = document.getElementById('print').innerHTML;
+
+  document.body.innerHTML = printContents;
+
+  window.print();
+  window.history.back();
+
+}
+
+//var printContents = document.getElementById('print').innerHTML;
+//var originalContents = document.body.innerHTML;
+
+//document.body.innerHTML = printContents;
+
+//window.print();
+//window.history.back();
+//document.body.innerHTML = originalContents;
 </script>

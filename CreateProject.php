@@ -71,7 +71,23 @@ if(isset($_POST['add']))
   $jn = $_POST['jn'];
   $des = $_POST['jd'];
   $type = $_POST['type'];
-  if(empty($_POST['jn']))
+
+  $sql = "SELECT * FROM ps.project WHERE jn = '$jn'";
+  $result = $conn->query($sql);
+  //  echo "Quna is here";
+  $row = $result->fetch_assoc();
+
+  if(!empty($row))
+  {
+
+    echo "<form method='get' id = 'enter' action = 'PHP/Panel/Interface.php'>";
+        echo "<h3>Creation Failed<br> Job number $jn already exists. ";
+    echo "
+        <input type='hidden' name = 'jn' value = '$jn'>
+        <input style = 'width:100px; height:30px;'type='submit' name = 'none' value = 'Open $jn'>
+    </h3></form>";
+  }
+  else if(empty($_POST['jn']))
   {
     echo "<input type='hidden' value='Creation Failed <br> Invalid Input' id='message'>";
   }
@@ -96,17 +112,23 @@ if(isset($_POST['add']))
           }
           $conn->query($sql1);
         }
+        echo "<input type='hidden' value = '$jn' id ='cjn'>";
         //echo "good";
-        echo "<input type='hidden' value='You successfully Create A Job: '$jn' id='message'>";
+        ?>
+        <script type="text/javascript">
+        document.getElementById('LUIPanel').value = document.getElementById('cjn').value;
+        document.getElementById('enter').submit();
+        //document.getElementById("error").innerHTML = document.getElementById("message").value;
+        </script>
+        <?php
+        //echo "<input type='hidden' value='You successfully Create A Job: '$jn' id='message'>";
       }
-      else{
-        echo "<input type='hidden' value='Creation Failed<br> Job Number $jn Already Exist' id='message'>";
-      }
+      //else{
+
+        //<form method='get' id = "enter" action = "PHP/Panel/Interface.php">
+        //  <Input list="productName" style="text-transform:uppercase" type="text" id = "LUIPanel" name = "jn" >
+      //}
     }
-    ?>
-    <script type="text/javascript">
-    document.getElementById("error").innerHTML = document.getElementById("message").value;
-    </script>
-    <?php
+
   }
   ?>

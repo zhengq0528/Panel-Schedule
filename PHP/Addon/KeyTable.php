@@ -66,41 +66,33 @@ if(isset($_POST['sk']))
     }
   }
 
-  echo "<table style='position:absolute; top:160px;left:300px;border-style:solid;'
+  echo "<table style='position:relative; top:160px;left:300px;border-style:solid;'
   border='1' class ='table-hover table-striped' width='50%'
   color='black' cellspacing='1' cellpadding='1' id = 'keytable'>";
   $col = 4;
 
-  echo "<tr><th colspan='$col'><h2><center>ReadMe<center></h2></th></tr>";
-  echo "<tr><th colspan='2'><h4>This table lists the circuit use codes.</h4></th>";
-  echo "<th colspan='2'><h4>Descriptions for codes in black cannot be altered.</h4></th></tr>";
-  echo "<tr><th colspan='2'><h4>Derating factors can be changed for Spare and Space.</h4></th>";
-  echo "<th colspan='2'><h4>Derating for Lighting(per table 220.42). </h4></th></tr>";
-  echo "<tr><th colspan='2'><h4>Motor(125%), andReCeptable(10k 100%, rest 50%) are fixed.  </h4></th>";
-  echo "<th colspan='2'><h4>The descriptions and deratings can be changed for the codes in blue. </h4></th></tr>";
-  echo "<tr><th colspan='2'><h4>Codes that are currently unused appear in red.  </h4></th>";
-  echo "<th colspan='2'><h4>(Note: You are only Able to delete UNUSED(RED) KEY) </h4></th></tr>";
+  echo "<tr><th colspan='$col'><h2><center>Key Table<center></h2></th></tr>";
   echo "<tr><th width='25%'><center>Key</center></th><th width='25%'><center>Description</center></th>
   <th width='25%'><center>Derating</center></th><th width='25%'><center>Total Loads(watts)</center></th></tr>";
   //Print out the special case first
   echo "<tr>
   <td><center><b>M</td>
   <td><center><b>Motors</td>
-  <td><center><b>--</td>
+  <td><center><b>125%</td>
   <td><center><b>$total[M]</td>
   </tr>";
 
   echo "<tr>
   <td><center><b>L</td>
   <td><center><b>Lighting</td>
-  <td><center><b>--</td>
+  <td><center><b>Per Table 220.42</td>
   <td><center><b>$total[L]</td>
   </tr>";
 
   echo "<tr>
   <td><center><b>R</td>
   <td><center><b>Receptacle</td>
-  <td><center><b>--</td>
+  <td><center><b>10k 100%, Rest 50%</td>
   <td><center><b>$total[R]</td>
   </tr>";
   $sql = "SELECT * FROM ps.keys where jn = '$_GET[jn]'";
@@ -153,11 +145,21 @@ if(isset($_POST['sk']))
     }
     echo "</tr>";
   }
-  echo "</table>";
-  echo "<button style='position:relative; top:700px; left:500px;' class='button' id = 'keycc'>Create</button>";
-  echo "<button style='position:relative; top:700px; left:600px;' class='button' id = 'delcc'>Delete Key</button>";
-  echo "</div>";
+  echo "<tr><th colspan='$col'>
+This table shows the circuit use codes, derating percentage and connected load for that code.  Any values appearing in Black cannot be altered.<br>
 
+Some derating values are fixed by code.  Motors loads at 125%, Receptacle loads first 10k 100%, rest 50%, and Lighting loads per table 220.42 based on building type.<br>
+
+Descriptions and deratings in <i style='color:blue;'>blue</i> can be changed.<br>
+
+Descriptions and deratings in <i style='color:red;'>red</i> are unused and are the only ones that can be deleted.<br>
+  </th></tr>";
+
+  echo "</table>";
+
+  echo "</div>";
+  echo "<button style='position:relative; top:200px; left:500px;' class='button' id = 'keycc'>Create Key</button>";
+  echo "<button style='position:relative; top:200px; left:700px;' class='button' id = 'delcc'>Delete Key</button>";
   $NewKey = new popwin("Create A New Key",1,'nkeypop','ckeypop');
   $NewKey->draw_head();
   $NewKey->draw_table_s();

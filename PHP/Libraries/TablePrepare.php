@@ -102,7 +102,7 @@ if(strcmp($_POST['redo'],"c1")==0)
       $keys +=[strtoupper($row['keyname']) => $row['description']];
       $keyDerating +=[strtoupper($row['keyname']) => $row['derating']];
     }
-    echo "<div class ='panel_table'>";
+    echo "<div class ='panel_table' id='print'>";
 
     if($cur_panel->get_intype == 1)
     $totalA = ($total2*1000) / ($cur_panel->get3PH());

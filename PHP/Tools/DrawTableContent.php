@@ -8,13 +8,13 @@ function CreateTabelCell($id,$type,$value)
   echo "<td tabindex='0' id=$id class = '$type'><center>";
   if(empty($value))
   {
-    echo "<span style='padding:0;margin:0;text-transform:uppercase; visibility: hidden' id=$sid class='text' value = '$value' >$value</span>";
+    echo "<span style='padding:0;margin:0;text-transform:uppercase; overflow: hidden;  visibility: hidden' id=$sid class='text' value = '$value' >$value</span>";
   }
   else
   {
-    echo "<span style='padding:0;margin:0;text-transform:uppercase' id=$sid class='text'>$value</span>";
+    echo "<span style='white-space:nowrap;padding:0;margin:0;text-transform:uppercase;' id=$sid class='text'>$value</span>";
   }
-  echo "<input style='padding:0;margin:0;text-transform:uppercase' type='text' class = 'editbox' id=$tid value='$value' >";
+  echo "<input style='padding:0;margin:0;text-transform:uppercase;overflow: hidden; ' type='text' class = 'editbox' id=$tid value='$value' >";
   echo  "</td>";
 }
 function CreateTabelCelln($id,$type,$value)
@@ -23,11 +23,11 @@ function CreateTabelCelln($id,$type,$value)
   $sid = $type .'_'.$id;
   $tid = $type .'_input_'.$id;
   echo "<td tabindex='0' id=$id class = '$type'><center>";
-  if($value == 0)
-  echo "<span style='padding:0;margin:0;text-transform:uppercase' id=$sid class='text'></span>";
-  else
+  //if($value == 0)
+  //echo "<span style='padding:0;margin:0;text-transform:uppercase' id=$sid class='text'></span>";
+  //else
   echo "<span style='padding:0;margin:0;text-transform:uppercase' id=$sid class='text'>$value</span>";
-  echo "<input style='padding:0;margin:0;text-transform:uppercase' type='text' onkeypress='return event.charCode >= 0 && event.charCode <= 64' class = 'editbox' id=$tid value='$value' >";
+  echo "<input style='padding:0;margin:0;text-transform:uppercase' type='text' onkeypress='return event.charCode >= 0 && event.charCode <= 64 || event.ctrlKey' class = 'editbox' id=$tid value='$value' >";
   echo  "</td>";
 }
 
